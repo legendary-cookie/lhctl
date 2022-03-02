@@ -1,0 +1,7 @@
+Longhorn-ctl
+============
+Subcommands:
+- volume: manage your volumes
+- help: show this text
+
+Use <subcommand> help to get more information on each subcommand!

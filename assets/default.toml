@@ -1,0 +1,4 @@
+ApiUrl = "https://longhorn.example.de/v1/"
+Auth = false
+Color = true
+Debug = false
