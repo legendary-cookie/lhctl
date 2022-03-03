@@ -7,7 +7,7 @@ import "os"
 import "strconv"
 
 func volumeHelp() {
-	fmt.Println("Available subcommands for <volume> are:\n- list\n- create <name> <size>\n- delete <name>\n- snapshot <volume> <snapshotname>")
+	fmt.Println("Available subcommands for <volume> are:\n- list\n- create <name> <size>\n- delete <name>\n- snapshot <volume> <snapshotname>\n- createpvc <volume> <namespace>")
 }
 
 func VolumeCommand(args []string) {
@@ -64,6 +64,17 @@ func VolumeCommand(args []string) {
 			volume := args[1]
 			name := args[2]
 			CreateSnapshot(volume, name)
+                case "createpvc":
+                      if len(args) < 3 {
+                                print(colorRed)
+				fmt.Println("You have to specify the volume and the namespace!")
+				print(colorReset)
+				break
+                      }
+                      volume := args[1]
+                      ns := args[2]
+                      CreatePv(volume, volume)
+                      CreatePvc(volume, volume, ns)
 		default:
 			volumeHelp()
 		}

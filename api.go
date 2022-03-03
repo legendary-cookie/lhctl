@@ -74,3 +74,19 @@ func CreateSnapshot(volume, name string) {
 	}{Name: name}
 	sendPost("volumes/"+volume, body)
 }
+
+func CreatePv(volume, pvname string) {
+	var body = struct {
+		PvName string `json:"pvName"`
+		FsType string `json:"fsType"`
+	}{PvName: pvname, FsType: "ext4"}
+	sendPost("volumes/"+volume+"?action=pvCreate", body)
+}
+
+func CreatePvc(volume, pvcname, namespace string) {
+	var body = struct {
+		PvcName   string `json:"pvcName"`
+		Namespace string `json:"namespace"`
+	}{PvcName: pvcname, Namespace: namespace}
+	sendPost("volumes/"+volume+"?action=pvcCreate", body)
+}
