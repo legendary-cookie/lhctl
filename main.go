@@ -14,9 +14,6 @@ import (
 //go:embed assets/default.toml
 var defaultconf string
 
-//go:embed assets/help.txt
-var help string
-
 var conf Config
 
 type Config struct {
@@ -49,23 +46,7 @@ func main() {
 	Run(os.Args[1:])
 }
 
-func HelpCommand() {
-	print(help)
-}
-
 func Run(args []string) {
-	/*
-		if len(args) != 0 {
-			switch args[0] {
-			case "volume":
-				VolumeCommand(args[1:])
-			default:
-				HelpCommand()
-			}
-		} else {
-			HelpCommand()
-		}
-	*/
 	parser := argparse.NewParser("lhctl", "Longhorn CLI to manage different aspects of longhorn")
 	volumeCommand := parser.NewCommand("volume", "Manage and view volumes")
 	volumeListCommand := volumeCommand.NewCommand("list", "List all volumes")
